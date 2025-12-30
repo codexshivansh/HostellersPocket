@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hostel Pocket | Student Expense Tracker</title>
+    <title>Hostel Pocket | Your Financial Roast-Master</title>
     <style>
         :root {
             --bg: #F2F2F7;
@@ -14,10 +14,9 @@
             --success: #34C759;
             --warning: #FF9500;
             --danger: #FF3B30;
-            --glass: rgba(255, 255, 255, 0.7);
             --border: rgba(0, 0, 0, 0.1);
-            --radius: 20px;
-            --shadow: 0 8px 30px rgba(0,0,0,0.04);
+            --radius: 24px;
+            --shadow: 0 10px 40px rgba(0,0,0,0.06);
         }
 
         .dark-mode {
@@ -25,9 +24,8 @@
             --card: #1C1C1E;
             --text: #F2F2F7;
             --text-sec: #8E8E93;
-            --glass: rgba(28, 28, 30, 0.7);
             --border: rgba(255, 255, 255, 0.1);
-            --shadow: 0 8px 30px rgba(0,0,0,0.4);
+            --shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
         * {
@@ -41,12 +39,12 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            transition: background-color 0.3s ease;
-            padding-bottom: 100px;
+            transition: all 0.3s ease;
+            padding-bottom: 50px;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 480px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -56,53 +54,54 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 25px;
-            padding-top: 10px;
+            padding: 10px 5px;
         }
 
-        .logo h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
-        .logo span { font-size: 12px; color: var(--accent); font-weight: 600; display: block; }
+        .logo h1 { font-size: 26px; font-weight: 800; letter-spacing: -1px; }
+        .logo span { font-size: 12px; color: var(--accent); font-weight: 700; text-transform: uppercase; }
 
         .theme-toggle {
             background: var(--card);
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            border-radius: 15px;
             cursor: pointer;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px;
         }
 
         .main-card {
-            background: var(--accent);
+            background: linear-gradient(135deg, #007AFF, #5856D6);
             color: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: var(--radius);
             margin-bottom: 20px;
-            box-shadow: 0 15px 35px rgba(0,122,255,0.3);
+            box-shadow: 0 20px 40px rgba(88, 86, 214, 0.3);
             position: relative;
             overflow: hidden;
         }
 
         .edit-budget-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: rgba(255,255,255,0.2);
             border: none;
             color: white;
-            padding: 5px 10px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
             font-size: 12px;
+            font-weight: 600;
             cursor: pointer;
-            backdrop-filter: blur(5px);
-            z-index: 2;
+            backdrop-filter: blur(10px);
         }
 
-        .balance-label { font-size: 14px; opacity: 0.9; margin-bottom: 5px; }
-        .balance-amt { font-size: 36px; font-weight: 800; margin-bottom: 20px; }
+        .balance-label { font-size: 14px; opacity: 0.8; margin-bottom: 8px; font-weight: 500; }
+        .balance-amt { font-size: 42px; font-weight: 800; margin-bottom: 25px; letter-spacing: -1px; }
         
         .stats-grid {
             display: grid;
@@ -110,102 +109,99 @@
             gap: 15px;
         }
 
-        .stat-item { background: rgba(255,255,255,0.15); padding: 12px; border-radius: 15px; backdrop-filter: blur(10px); }
-        .stat-label { font-size: 11px; text-transform: uppercase; opacity: 0.8; font-weight: 600; }
-        .stat-value { font-size: 16px; font-weight: 700; }
+        .stat-item { background: rgba(255,255,255,0.12); padding: 15px; border-radius: 18px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .stat-label { font-size: 11px; text-transform: uppercase; opacity: 0.7; font-weight: 700; margin-bottom: 4px; }
+        .stat-value { font-size: 18px; font-weight: 700; }
 
-        .smart-insight {
+        .full-stat { grid-column: span 2; background: rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; }
+
+        .roast-card {
             background: var(--card);
-            padding: 15px 20px;
+            padding: 20px;
             border-radius: var(--radius);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .insight-icon { font-size: 24px; }
-        .insight-text { font-size: 14px; font-weight: 500; }
+        @keyframes bounceIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin: 25px 0 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .roast-icon { font-size: 32px; }
+        .roast-text { font-size: 15px; font-weight: 600; line-height: 1.4; color: var(--text); }
+
+        .section-title { font-size: 18px; font-weight: 700; margin: 30px 0 15px; padding-left: 5px; }
+
+        .input-card {
+            background: var(--card);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
         }
 
         .input-group { margin-bottom: 15px; }
+        
         input, select {
             width: 100%;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 14px;
             border: 1px solid var(--border);
-            background: var(--card);
+            background: var(--bg);
             color: var(--text);
             font-size: 16px;
+            font-weight: 500;
             outline: none;
-            transition: 0.2s;
+            transition: 0.3s;
         }
-        input:focus { border-color: var(--accent); }
+
+        input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(0,122,255,0.1); }
 
         .btn {
             width: 100%;
-            padding: 16px;
-            border-radius: 12px;
+            padding: 18px;
+            border-radius: 16px;
             border: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.2s;
         }
-        .btn-primary { background: var(--accent); color: white; }
-        .btn-primary:active { transform: scale(0.98); opacity: 0.9; }
+
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 8px 20px rgba(0,122,255,0.25); }
+        .btn-primary:active { transform: scale(0.96); }
 
         .history-item {
             background: var(--card);
-            padding: 15px;
-            border-radius: 16px;
-            margin-bottom: 12px;
+            padding: 18px;
+            border-radius: 20px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            transition: 0.3s;
         }
 
-        .hist-info h4 { font-size: 16px; margin-bottom: 2px; }
-        .hist-info p { font-size: 12px; color: var(--text-sec); }
+        .hist-info h4 { font-size: 16px; margin-bottom: 4px; font-weight: 700; }
+        .hist-info p { font-size: 12px; color: var(--text-sec); font-weight: 500; }
         
-        .hist-actions {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            align-items: flex-end;
-        }
-
-        .amt-val { font-weight: 700; font-size: 16px; }
-        .tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+        .hist-right { text-align: right; }
+        .amt-val { font-weight: 800; font-size: 17px; margin-bottom: 5px; }
+        
+        .tag { font-size: 10px; padding: 4px 8px; border-radius: 6px; font-weight: 800; text-transform: uppercase; }
         .tag-waste { background: #FFE5E5; color: var(--danger); }
         .tag-useful { background: #E5F9EB; color: var(--success); }
 
-        .action-btns {
-            margin-top: 5px;
-            display: flex;
-            gap: 10px;
-        }
-        .action-btn {
-            font-size: 12px;
-            color: var(--accent);
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 2px;
-        }
+        .action-btns { margin-top: 8px; display: flex; gap: 12px; justify-content: flex-end; }
+        .action-btn { font-size: 11px; color: var(--accent); font-weight: 700; cursor: pointer; background: none; border: none; }
         .btn-delete { color: var(--danger); }
 
         #setup-screen {
@@ -221,38 +217,54 @@
 
         .setup-card {
             background: var(--card);
-            padding: 30px;
-            border-radius: var(--radius);
+            padding: 35px;
+            border-radius: 30px;
             width: 100%;
             max-width: 400px;
             box-shadow: var(--shadow);
+            text-align: center;
         }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text);
+            color: var(--bg);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 2000;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        #toast.show { transform: translateX(-50%) translateY(0); }
 
         .hidden { display: none !important; }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-sec);
-            font-style: italic;
-        }
+        .empty-state { text-align: center; padding: 40px; color: var(--text-sec); font-style: italic; }
     </style>
 </head>
 <body>
 
+<div id="toast">Oye! Kharcha add ho gaya. 💸</div>
+
 <div id="setup-screen" class="hidden">
     <div class="setup-card">
-        <h2 id="setup-title" style="margin-bottom: 10px;">Setup Budget 💸</h2>
-        <p style="color: var(--text-sec); margin-bottom: 20px; font-size: 14px;">How much money did you get this month?</p>
+        <h2 id="setup-title" style="margin-bottom: 10px; font-size: 24px;">Paisa hi Paisa! 🤑</h2>
+        <p style="color: var(--text-sec); margin-bottom: 25px; font-size: 15px;">Kitna maal (pocket money) mila hai is mahine?</p>
         <div class="input-group">
             <input type="number" id="init-budget" placeholder="Amount (e.g. 5000)">
         </div>
         <div class="input-group">
-            <label style="font-size: 12px; color: var(--text-sec);">Budget valid until:</label>
+            <label style="font-size: 12px; color: var(--text-sec); display: block; margin-bottom: 8px; text-align: left;">Kab tak chalana hai?</label>
             <input type="date" id="init-date">
         </div>
         <button class="btn btn-primary" onclick="initApp()">Save Budget</button>
-        <button id="cancel-setup" class="btn hidden" style="margin-top: 10px; color: var(--text-sec);" onclick="hideSetup()">Cancel</button>
+        <button id="cancel-setup" class="btn hidden" style="margin-top: 10px; color: var(--text-sec); background: none;" onclick="hideSetup()">Cancel</button>
     </div>
 </div>
 
@@ -267,86 +279,123 @@
 
     <div class="main-card">
         <button class="edit-budget-btn" onclick="showSetup(true)">✏️ Edit</button>
-        <p class="balance-label">Remaining Pocket Money</p>
+        <p class="balance-label">Maal Bacha Hai</p>
         <div class="balance-amt" id="display-balance">₹0</div>
         <div class="stats-grid">
             <div class="stat-item">
-                <p class="stat-label">Daily Limit</p>
+                <p class="stat-label">Daily Aukaat</p>
                 <p class="stat-value" id="display-daily">₹0</p>
             </div>
             <div class="stat-item">
-                <p class="stat-label">Days Left</p>
-                <p class="stat-value" id="display-days">0 Days</p>
+                <p class="stat-label">Din Bache Hain</p>
+                <p class="stat-value" id="display-days">0 Din</p>
+            </div>
+            <div class="stat-item full-stat">
+                <div>
+                    <p class="stat-label">Aaj Ki Aukaat Bachi</p>
+                    <p class="stat-value" id="display-today-left">₹0</p>
+                </div>
+                <div id="status-emoji" style="font-size: 24px;">✅</div>
             </div>
         </div>
     </div>
 
-    <div class="smart-insight" id="smart-insight">
-        <div class="insight-icon" id="insight-emoji">⚡</div>
-        <div class="insight-text" id="insight-msg">Welcome back, shershah!</div>
+    <div class="roast-card" id="roast-container">
+        <div class="roast-icon" id="roast-emoji">👋</div>
+        <div class="roast-text" id="roast-msg">Oye Shershah! Paisa udana shuru karein?</div>
     </div>
 
-    <div class="section-title" id="form-title">Add Expense</div>
-    <div class="card" style="background: var(--card); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border);">
+    <div class="section-title" id="form-title">Kharcha Note Kar</div>
+    <div class="input-card">
         <input type="hidden" id="edit-id">
         <div class="input-group">
-            <input type="number" id="exp-amt" placeholder="How much? (₹)">
+            <input type="number" id="exp-amt" placeholder="Kitne uda diye? (₹)">
         </div>
         <div class="input-group">
-            <input type="text" id="exp-reason" placeholder="Reason? (e.g. Chai Sutta, Maggi)">
+            <input type="text" id="exp-reason" placeholder="Kahan barbaad kiye? (e.g. Chai, Party)">
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
             <select id="exp-cat">
-                <option value="Food">🍔 Food</option>
+                <option value="Food">🍔 Khana</option>
                 <option value="Hostel">🏠 Hostel</option>
-                <option value="Travel">🚲 Travel</option>
-                <option value="Fun">🎸 Fun</option>
-                <option value="Study">📚 Study</option>
-                <option value="Other">✨ Other</option>
+                <option value="Travel">🚲 Ghoomna</option>
+                <option value="Fun">🎸 Shauk</option>
+                <option value="Study">📚 Padhai</option>
+                <option value="Other">✨ Faltu</option>
             </select>
             <select id="exp-tag">
-                <option value="useful">✅ Useful</option>
-                <option value="waste">💸 Waste</option>
+                <option value="useful">✅ Kaam ka</option>
+                <option value="waste">💸 Barbaadi</option>
             </select>
         </div>
         <button id="add-btn" class="btn btn-primary" onclick="addExpense()">Add Kharcha</button>
-        <button id="cancel-edit-btn" class="btn hidden" style="margin-top: 10px; color: var(--danger);" onclick="resetForm()">Cancel Edit</button>
+        <button id="cancel-edit-btn" class="btn hidden" style="margin-top: 10px; color: var(--danger); background: none;" onclick="resetForm()">Nahi Rehne De!</button>
     </div>
 
-    <div class="section-title">
-        History
-        <span style="font-size: 12px; color: var(--accent); cursor: pointer;" onclick="resetApp()">Reset All</span>
+    <div class="section-title" style="display: flex; justify-content: space-between; align-items: center;">
+        Kand-History
+        <span style="font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 600;" onclick="resetApp()">Reset All</span>
     </div>
     <div id="history-list"></div>
 </div>
 
 <script>
-    let state = {
-        budget: 0,
-        endDate: "",
-        expenses: []
+    let state = { budget: 0, endDate: "", expenses: [] };
+
+    const ROASTS = {
+        SAVING: [
+            "Respect bro, aaj toh paisa sambhal liya 👏",
+            "Wah! Ambani banne ka iraada hai kya? 😎",
+            "Mummy khush hongi, aaj tune kam udaaya!",
+            "Safe zone mein hai tu. Party kab hai? 😂",
+            "Control uday control! Aaj tune kar dikhaya."
+        ],
+        OVERSPENDING: [
+            "Bhai tu paise udaane me PhD kar raha hai kya? 💀",
+            "Aaj toh gareebi ka naya level unlock ho gaya 😭",
+            "Itna kharcha? Kidney bechne ka plan hai?",
+            "Thoda control kar warna end of month Maggi bhi naseeb nahi hogi!",
+            "Bhai, thoda sa toh sharam kar le... itna kharcha? 😅"
+        ],
+        CRITICAL: [
+            "Khatam, Tata, Bye-bye. Udhaar lena padega! 💀",
+            "System hang ho gaya hai tera, budget 0 hai!",
+            "Bhai tu hostel chhod ke ghar chala ja ab... 🚶‍♂️",
+            "Zero balance... ab sirf duaon mein yaad rakhna."
+        ],
+        TOASTS: [
+            "Chalo, ek aur barbaadi add ho gayi! ✅",
+            "Paisa gaya, sukoon aaya? 💸",
+            "Note kar liya tera kaand! 📝",
+            "Le bhai, kar diya update. 🤘",
+            "Ek aur kharcha? Ambani ke chacha ho kya? 🧐",
+            "Mummy ko phone karun kya? Itna uda raha hai! 📞",
+            "Paisa hi paisa hoga! (Lekin tere paas nahi) 🤣",
+            "Bas kar bhai, ab kya kidney bechega? 💀"
+        ]
     };
 
-    // Date formatting helper
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.innerText = msg || ROASTS.TOASTS[Math.floor(Math.random() * ROASTS.TOASTS.length)];
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
     function getFormattedDate(dateObj = new Date()) {
-        const options = { day: 'numeric', month: 'long', year: 'numeric' };
-        return dateObj.toLocaleDateString('en-GB', options); 
+        return dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); 
     }
 
     function load() {
+        // Storage key changed back to original
         const saved = localStorage.getItem('hostel_pocket_data');
-        if (saved) {
-            state = JSON.parse(saved);
-            render();
-        } else {
-            showSetup(false);
-        }
+        if (saved) { state = JSON.parse(saved); render(); } else { showSetup(false); }
     }
 
     function showSetup(isEdit) {
         document.getElementById('setup-screen').classList.remove('hidden');
         if(isEdit) {
-            document.getElementById('setup-title').innerText = "Edit Budget ✏️";
+            document.getElementById('setup-title').innerText = "Budget Change? 🤔";
             document.getElementById('init-budget').value = state.budget;
             document.getElementById('init-date').value = state.endDate;
             document.getElementById('cancel-setup').classList.remove('hidden');
@@ -357,24 +406,19 @@
         }
     }
 
-    function hideSetup() {
-        document.getElementById('setup-screen').classList.add('hidden');
-    }
+    function hideSetup() { document.getElementById('setup-screen').classList.add('hidden'); }
 
     function initApp() {
         const b = parseFloat(document.getElementById('init-budget').value);
         const d = document.getElementById('init-date').value;
-        if (!b || !d) return alert("Please fill both fields!");
-        
-        state.budget = b;
-        state.endDate = d;
-        save();
-        hideSetup();
-        render();
+        if (!b || !d) return alert("Pehle data bhar le bhai!");
+        state.budget = b; state.endDate = d;
+        save(); hideSetup(); showToast("Budget set! Ab tameez se kharch kariyo. 😉"); render();
     }
 
-    function save() {
-        localStorage.setItem('hostel_pocket_data', JSON.stringify(state));
+    function save() { 
+        // Storage key changed back to original
+        localStorage.setItem('hostel_pocket_data', JSON.stringify(state)); 
     }
 
     function addExpense() {
@@ -384,29 +428,23 @@
         const tag = document.getElementById('exp-tag').value;
         const editId = document.getElementById('edit-id').value;
 
-        if (!amt || !reason) return;
+        if (!amt || !reason) return alert("Poori detail toh de kharche ki!");
 
         if (editId) {
             const index = state.expenses.findIndex(e => e.id == editId);
             state.expenses[index] = { ...state.expenses[index], amt, reason, cat, tag };
+            showToast("Theek hai, badal diya tera kaand! ✅");
         } else {
-            state.expenses.unshift({
-                id: Date.now(),
-                amt, reason, cat, tag,
-                date: getFormattedDate() // Using naming format
-            });
+            state.expenses.unshift({ id: Date.now(), amt, reason, cat, tag, date: getFormattedDate() });
+            showToast();
         }
-
-        resetForm();
-        save();
-        render();
+        resetForm(); save(); render();
     }
 
     function deleteExpense(id) {
-        if(confirm("Delete this kharcha?")) {
+        if(confirm("Yeh wala paap mita dun?")) {
             state.expenses = state.expenses.filter(e => e.id !== id);
-            save();
-            render();
+            save(); showToast("Le bhai, delete kar diya! Sukoon? 😎"); render();
         }
     }
 
@@ -417,71 +455,71 @@
         document.getElementById('exp-cat').value = exp.cat;
         document.getElementById('exp-tag').value = exp.tag;
         document.getElementById('edit-id').value = exp.id;
-        
-        document.getElementById('form-title').innerText = "Edit Expense";
-        document.getElementById('add-btn').innerText = "Update Kharcha";
+        document.getElementById('form-title').innerText = "Galti Sudhar Le";
+        document.getElementById('add-btn').innerText = "Update Kand";
         document.getElementById('cancel-edit-btn').classList.remove('hidden');
-        window.scrollTo({ top: 200, behavior: 'smooth' });
+        window.scrollTo({ top: 300, behavior: 'smooth' });
     }
 
     function resetForm() {
-        document.getElementById('exp-amt').value = '';
-        document.getElementById('exp-reason').value = '';
-        document.getElementById('edit-id').value = '';
-        document.getElementById('form-title').innerText = "Add Expense";
-        document.getElementById('add-btn').innerText = "Add Kharcha";
-        document.getElementById('cancel-edit-btn').classList.add('hidden');
+        document.getElementById('exp-amt').value = ''; document.getElementById('exp-reason').value = '';
+        document.getElementById('edit-id').value = ''; document.getElementById('form-title').innerText = "Kharcha Note Kar";
+        document.getElementById('add-btn').innerText = "Add Kharcha"; document.getElementById('cancel-edit-btn').classList.add('hidden');
     }
 
     function render() {
         const totalSpent = state.expenses.reduce((acc, curr) => acc + curr.amt, 0);
         const remaining = state.budget - totalSpent;
-        
         const end = new Date(state.endDate);
         const now = new Date();
         const diffDays = Math.max(1, Math.ceil((end - now) / (1000 * 60 * 60 * 24)));
         const dailyLimit = remaining / diffDays;
 
+        const todayDateStr = getFormattedDate();
+        const todaySpent = state.expenses.filter(e => e.date === todayDateStr).reduce((acc, curr) => acc + curr.amt, 0);
+        const todayLeft = dailyLimit - todaySpent;
+
         document.getElementById('display-balance').innerText = `₹${remaining.toFixed(0)}`;
         document.getElementById('display-daily').innerText = `₹${dailyLimit.toFixed(0)}`;
-        document.getElementById('display-days').innerText = `${diffDays} Days`;
+        document.getElementById('display-days').innerText = `${diffDays} Din`;
+        document.getElementById('display-today-left').innerText = `₹${todayLeft.toFixed(0)}`;
 
-        const todayDateStr = getFormattedDate();
-        const todaySpent = state.expenses
-            .filter(e => e.date === todayDateStr)
-            .reduce((acc, curr) => acc + curr.amt, 0);
+        const statusEmoji = document.getElementById('status-emoji');
+        if(todayLeft < 0) statusEmoji.innerText = "💀";
+        else if(todayLeft < dailyLimit * 0.2) statusEmoji.innerText = "⚠️";
+        else statusEmoji.innerText = "✅";
 
-        const insightEmoji = document.getElementById('insight-emoji');
-        const insightMsg = document.getElementById('insight-msg');
+        const rEmoji = document.getElementById('roast-emoji');
+        const rMsg = document.getElementById('roast-msg');
+        const container = document.getElementById('roast-container');
 
         if (remaining < 0) {
-            insightEmoji.innerText = "💀"; insightMsg.innerText = "Khatam, Tata, Bye-bye. Udhaar lena padega!";
-        } else if (todaySpent > dailyLimit * 1.2) {
-            insightEmoji.innerText = "😅"; insightMsg.innerText = "Aaj zyada kharcha ho gaya!";
-        } else {
-            insightEmoji.innerText = "😎"; insightMsg.innerText = "Full control, shershah!";
+            rEmoji.innerText = "💀"; rMsg.innerText = ROASTS.CRITICAL[Math.floor(Math.random() * ROASTS.CRITICAL.length)];
+            container.style.borderColor = "var(--danger)";
+        } else if (todaySpent > dailyLimit * 1.3) {
+            rEmoji.innerText = "😅"; rMsg.innerText = ROASTS.OVERSPENDING[Math.floor(Math.random() * ROASTS.OVERSPENDING.length)];
+            container.style.borderColor = "var(--warning)";
+        } else if (state.expenses.length > 0) {
+            rEmoji.innerText = "😎"; rMsg.innerText = ROASTS.SAVING[Math.floor(Math.random() * ROASTS.SAVING.length)];
+            container.style.borderColor = "var(--success)";
         }
 
         const list = document.getElementById('history-list');
-        list.innerHTML = state.expenses.length === 0 ? '<div class="empty-state">No kharcha yet.</div>' : '';
+        list.innerHTML = state.expenses.length === 0 ? '<div class="empty-state">Koi kharcha nahi? Itna shareef kab se ho gaya... 🤔</div>' : '';
 
         state.expenses.forEach(exp => {
             const div = document.createElement('div');
             div.className = 'history-item';
             div.innerHTML = `
-                <div class="hist-info">
-                    <h4>${exp.reason}</h4>
-                    <p>${exp.date} • ${exp.cat}</p>
-                </div>
-                <div class="hist-actions">
+                <div class="hist-info"><h4>${exp.reason}</h4><p>${exp.date} • ${exp.cat}</p></div>
+                <div class="hist-right">
                     <div class="amt-val">₹${exp.amt}</div>
-                    <span class="tag tag-${exp.tag}">${exp.tag}</span>
+                    <span class="tag tag-${exp.tag}">${exp.tag === 'waste' ? 'Barbaadi 🚮' : 'Kaam Ka ✅'}</span>
                     <div class="action-btns">
-                        <button class="action-btn" onclick="editExpense(${exp.id})">Edit</button>
-                        <button class="action-btn btn-delete" onclick="deleteExpense(${exp.id})">Delete</button>
+                        <button class="action-btn" onclick="editExpense(${exp.id})">Galti Sudhar</button>
+                        <button class="action-btn btn-delete" onclick="deleteExpense(${exp.id})">Mita De</button>
                     </div>
-                </div>
-            `;
+                </div>`;
             list.appendChild(div);
         });
     }
@@ -491,12 +529,12 @@
         document.querySelector('.theme-toggle').innerText = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     }
 
-    function resetApp() {
-        if (confirm("Clear all expenses? This cannot be undone.")) {
-            state.expenses = [];
-            save();
-            render();
-        }
+    function resetApp() { 
+        if (confirm("Poora safaya karna hai? Sachi?")) { 
+            // Storage key changed back to original
+            localStorage.removeItem('hostel_pocket_data'); 
+            location.reload(); 
+        } 
     }
 
     window.onload = load;
